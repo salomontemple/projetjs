@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+        
+        <title>Formulaire</title>
+        <style>
+
+        @media print
+        {
+
+            .ne-pas-imprimer, .ne-pas-imprimer *
+            {
+                display : none !important;
+            }
+        }
+
+        .couleur{
+            background-color: lightslategray; 
+            
+        }
+        
+        </style>
+
+    </head>
+    <body>
+
+        <div class="container couleur">
+            <div class="py-5 text-center">
+                <h2>Formulaire Bootstrap de Calcul de salaire</h2>
+            </div>
+
+            <div class="row">
+            
+                <div class="col-md-8 order-md-1">
+                
+                    <form class="needs-validation" novalidate="" id="formulaire-calcul-salaire">
+                        <!-- <div class="row"> -->
+                                <div class="from-group">
+                                    <label for="prenom">Prénom</label>
+                                    <input type="text" class="form-control" id="prenom" autocomplete="off" placeholder="Le prénom ici" value="" required="">
+                                    <div class="invalid-feedback" id="error-prenom">
+                                        Ce champ est obligatoire
+                                    </div>
+                                </div>
+                            <div class="from-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" id="nom" autocomplete="off"  placeholder="Le nom ici" value="" required="">
+                                <div class="invalid-feedback" id="error-nom">
+                                    Ce champ est obligatoire
+                                </div>
+                            </div>
+                            <div class="from-group">
+                                <label for="state">Sexe</label>
+                                <select class="custom-select d-block w-100" id="sexe" required="">
+                                    <option value="homme">Homme</option>
+                                    <option value="femme">Femme</option>
+                                </select>             
+                            </div>
+                        <!-- </div> -->
+
+                        <!-- <div class="row"> -->
+                            <div class="from-group">
+                                <label for="salaire-brute">Salaire brute</label>
+                                <div class="input-group">
+                                
+                                    <input type="text" class="form-control" autocomplete="off"  id="salaire-brute" placeholder="Le salaire brute ici" required="">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">FCFA</span>
+                                    </div>
+                                    <div class="invalid-feedback" style="width: 100%;"  id="error-salaire-brute">
+                                        Ce champ est obligatoire
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+
+                            <div class="from-group">
+                                <label for="nombre-personne-a-charge">Nombre de personne à charge</label>
+                                <div class="input-group">                  
+                                    <input type="text" class="form-control" autocomplete="off"  id="nombre-personne-a-charge" placeholder="Le nombre ici" required="">
+                                    <div class="invalid-feedback" style="width: 100%;" id="error-nombre-personne-a-charge">
+                                        Ce champ est obligatoire
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-md-4 mb-3"> -->
+                                 <p>Prime sur le salaire</p>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" class="form-check-input" id="supplement" >
+                                    <label class="form-check-label" for="supplement"> Bonus de 20%</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" class="form-check-input" id="allocation" >
+                                    <label class="form-check-label" for="allocation">allocation de 25%</label>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                    
+                        <hr class="mb-4">
+                        <button class="btn btn-primary btn-lg btn-block ne-pas-imprimer" type="submit">Calculer le salaire net</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="reset">Effacer</button>
+                    </form>
+                </div>
+                <div class="col-md-4 order-md-2 mb-4" id="partie-bulletin">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Bulletin de salaire</span>
+                    <span class="badge badge-secondary badge-pill ne-pas-imprimer"><button type="button" id="imprimer" class="btn btn-secondary btn-sm">Imprimer</button></span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">employé(e)</h6>
+                                </div>
+                                <span class="text-muted" id="bulletin-employe"></span>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Allocation</h6>
+                                </div>
+                                <span class="text-muted" id="bulletin-allocation"></span>
+                                </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0" >Supplément</h6>
+                                </div>
+                                <span class="text-muted" id="bulletin-supplement"></span>
+                            </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div class="text-danger">
+                                <h6 class="my-0">Salaire brute</h6>
+                            </div>
+                            <span class="text-muted" id="bulletin-salaire-brute"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Impôts sur le revenu 18%</h6>
+                            </div>
+                            <span class="text-muted" id="impos-sur-revenu"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Assurance employé 7%</h6>
+                            </div>
+                            <span class="text-muted" id="assurance-employe"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                            <h6 class="my-0">Régime de pensions 5%</h6>
+                            </div>
+                            <span class="text-muted" id="regime-pension"></span>
+                        </li>
+                        
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Salaire NET</h6>
+                            </div>
+                            <span class="text-success" id="salaire-net"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">© 2018 Groupe GLAR </p>
+                <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Abdoulaye NIANG</a></li>
+                <li class="list-inline-item"><a href="#">Youssoupha DIOP</a></li>
+                <li class="list-inline-item"><a href="#">Mansour Kolev SOW</a></li>
+                <li class="list-inline-item"><a href="#">Souleymane Pascal COLY</a></li>
+                </ul>
+            </footer>
+        </div>
+
+        
+        
+    
+
+        <script src="js/jquery-3.3.1.slim.min.js" ></script>
+        <script src="js/bootstrap.bundle.min.js" ></script>
+        <script src="js/formulaire.js" ></script>
+    
+     </body>
+</html>
